@@ -7,9 +7,9 @@ public class Grades {
     String course;
     String teacher;
     String date;
-    int grade;
+    double grade;
 
-    public Grades(String cod, int student_cod, String course, String teacher, String date, int grade) {
+    public Grades(String cod, int student_cod, String course, String teacher, String date, double grade) {
         this.cod = cod;
         this.student_cod = student_cod;
         this.course = course;
@@ -54,11 +54,11 @@ public class Grades {
         this.date = date;
     }
 
-    public int getGrade() {
+    public double getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(double grade) {
         this.grade = grade;
     }
 }

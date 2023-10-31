@@ -1,5 +1,7 @@
 package com.example.modelsexample_01.models;
 
+import java.security.PublicKey;
+
 public class Student {
 
     protected int cod;
@@ -7,6 +9,12 @@ public class Student {
     protected String phone;
     protected String address;
 
+
+    public Student(String name, String phone, String address){
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+    }
     public Student(int cod, String name, String phone, String address) {
         this.cod = cod;
         this.name = name;
