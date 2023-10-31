@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Ta"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -151,20 +152,6 @@
                     android:inputType="text" />
 
                 <TextView
-                    android:id="@+id/textViewDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Fecha:" />
-
-                <EditText
-                    android:id="@+id/editTextDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="D-M-Y"
-                    android:inputType="text" />
-
-                <TextView
                     android:id="@+id/textViewGrade2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -211,13 +198,46 @@
                     android:layout_height="wrap_content"
                     android:hint="Estudiante a consultar" />
 
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Buscar" />
+
                 <TableLayout
+                    android:id="@+id/TableStudent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Estudiante" />
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Curso" />
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nota" />
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fecha" />
+
+                    </TableRow>
 
                 </TableLayout>
 
