@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.modelsexample_01.models.Grades;
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         grade=findViewById(R.id.editTextGrade);
 
         studentCodeSearch=findViewById(R.id.edStudentCode);
+        table=findViewById(R.id.TableStudent);
+
 
         userRegister=findViewById(R.id.buttonStudentRegister);
         gradeRegister=findViewById(R.id.buttonGradeRegister);
@@ -65,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     Student studentObject= new Student(code,studentName,studentPhone,studentAddress);
                     studentList.put(code,studentObject);
+                    System.out.println(code);
+                    limpiarUser();
+                    Toast.makeText(getApplicationContext(),"Estudiante" +
+                            "registrado",Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -93,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
                         Grades gradeObject= new Grades(code,code_studentInt,course_name,
                                 teacher_name,date,finalGradeInt);
                         gradeList.put(code,gradeObject);
+                        Toast.makeText(getApplicationContext(),"Se registro" +
+                                "la nota",Toast.LENGTH_LONG).show();
+
+                        limpiarGrades();
                     }else {
                         Toast.makeText(getApplicationContext(),"Este estudiante" +
                                 "no esta registrado en nuestra base de datos",Toast.LENGTH_LONG).show();
@@ -111,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     int studentCodeInt= Integer.parseInt(studentCode);
                     if(userValidation(studentCodeInt,studentCodesList)){
-                        showResults(studentCodeInt,gradeList);
+                        table.removeAllViews();
+                        showResults(studentCodeInt,gradeList,studentList);
                     }else{
                         Toast.makeText(getApplicationContext(),"No se encuentra estudiantes" +
                                 " con este código",Toast.LENGTH_LONG).show();
@@ -125,15 +138,53 @@ public class MainActivity extends AppCompatActivity {
 
     public int studentCodeGenerator(ArrayList<Integer>list){
         int random= (int)((Math.random()+0)*(999999-0+1));
-        if (userValidation(random,list)){
-            studentCodeGenerator(list);
+
+        while (userValidation(random,list)){
+            random= (int)((Math.random()+0)*(999999-0+1));
         }
+
         return random;
     }
 
 
 
-    public void showResults(int code, HashMap<String,Grades>grades){
+    public void showResults(int code, HashMap<String,Grades>grades,HashMap<Integer,Student>studentList)   {
+/**     {("lksls1226"-{123,"Luis","APPS",5,"2023-11-1"}),
+ *      "kp47sl"-{963,"Luis","APPS",4,"2023-11-1"}),
+ *      "porty56"-{123,"Diana","Design",4.5,"2023-10-31"}),
+ *      "loisy85"-{333,"Luis","APPS",5,"2023-11-2"}),
+ *      "ujtsr41"-{123,"Carlos","Base de datos",5,"2023-11-3"})
+ *      }
+ */
+
+        for (String i: grades.keySet()){
+            int codeStu= grades.get(i).getStudent_cod();
+            if(grades.get(i).getStudent_cod()==code){
+                TableRow row= new TableRow(this);
+
+                TextView studentName= new TextView(this);
+                studentName.setText(studentList.get(code).getName());
+
+                TextView courseName= new TextView(this);
+                courseName.setText(grades.get(i).getCourse());
+
+                TextView finalGrade= new TextView(this);
+                finalGrade.setText(grades.get(i).getGrade()+"");
+
+                TextView date= new TextView(this);
+                date.setText(grades.get(i).getDate());
+
+                row.addView(studentName);
+                row.addView(courseName);
+                row.addView(finalGrade);
+                row.addView(date);
+
+                table.addView(row);
+
+            }
+        }
+
+
 
     }
 
@@ -146,6 +197,19 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return exist;
+    }
+
+    public void limpiarUser(){
+        name.setText("");
+        phone.setText("");
+        address.setText("");
+    }
+
+    public void limpiarGrades(){
+        studentCode.setText("");
+        teacher.setText("");
+        course.setText("");
+        grade.setText("");
     }
 
 
